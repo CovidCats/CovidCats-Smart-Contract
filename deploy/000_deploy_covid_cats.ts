@@ -19,23 +19,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     log: true,
   });
 
-  // fs.writeFileSync("./toggle.json", JSON.stringify(deployResult))
-
   if (deployResult.newlyDeployed) {
-    log(`contract Token deployed at ${deployResult.address} using ${deployResult.receipt!.gasUsed!} gas`);
+    log(`contract CovidCats deployed at ${deployResult.address} using ${deployResult.receipt!.gasUsed!} gas`);
   }
-
-  // Wait 60 seconds before attempting to verify contract on Etherscan
-  setTimeout(async() => {
-    await hre.run("verify:verify", {
-      address: deployResult.address!,
-      constructorArguments: [
-        RINKEBY_VRF_COORDINATOR,
-        RINKEBY_LINKTOKEN,
-        RINKEBY_KEYHASH
-      ]
-    });
-  }, 60000)
     
 };
 
