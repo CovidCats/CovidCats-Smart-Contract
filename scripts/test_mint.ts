@@ -1,13 +1,19 @@
 // npx hardhat run scripts/test_mint.ts --network rinkeby
 
+import fs from "fs";
 import { transferLink } from "./helpers/link_contract";
 import { claim, withdrawLink, withdrawBalance, saleIsActive, toggleSale, getEvent } from "./helpers/covidcats_contract";
 
-const address = "0x2372c07b7B4EDDb084B269223D5e3c7BBb8933dB" // CHANGE DEPLOYED COVID CATS CONTRACT ADDRESS HERE
-// Is there a way to programatically change the above address to link to the most recent deployment?
+// const address = "0x2372c07b7B4EDDb084B269223D5e3c7BBb8933dB" // CHANGE DEPLOYED COVID CATS CONTRACT ADDRESS HERE
+// // Is there a way to programatically change the above address to link to the most recent deployment?
 
-async function test_mint(_address: string) {
+async function test_mint() {
     
+    const deploymentData = await fs.readFileSync("./deployments/rinkeby/CovidCats.json");
+    const parsed_deploymentData = JSON.parse(deploymentData.toString())
+
+    const _address = parsed_deploymentData.address
+
     // Check if mint activated
     const mintOn = await saleIsActive(_address)
 
@@ -41,4 +47,4 @@ async function test_mint(_address: string) {
     await getEvent(_address)
 }
 
-test_mint(address)
+test_mint()
