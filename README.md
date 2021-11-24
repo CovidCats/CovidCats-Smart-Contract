@@ -3,8 +3,7 @@ Make sure to setup the .env file
 `npx hardhat deploy --network rinkeby` => `npx hardhat etherscan-verify --network rinkeby`
 This will compile the contract, deploy on Rinkeby, and verify the contract on Etherscan
 
-'npx hardhat run scripts/test_mint.ts --network rinkeby'
-This will run a test mint 
+`npx hardhat run scripts/test_mint.ts --network rinkeby` => This will run a test mint 
 
 # Simple NFT generation contract
 
