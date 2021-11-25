@@ -38,7 +38,7 @@ const abi = [
       "stateMutability":"view",
       "type":"function"
     },
-    "event Mint(address indexed _minter, uint256 indexed _tokenID, uint256[6] random_numbers)"
+    "event Mint(address indexed _minter, uint256 indexed _tokenID, uint256[7] random_numbers)"
 ]
 
 export async function claim(_address: string) {
