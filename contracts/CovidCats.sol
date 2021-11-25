@@ -29,7 +29,7 @@ contract CovidCats is ERC721, VRFConsumerBase, Ownable, ReentrancyGuard {
     mapping (uint256 => string) private _tokenURIs;
     string private _baseTokenURI;
     
-    event Mint(address indexed _minter, uint256 indexed _tokenID, uint256[6] random_numbers);
+    event Mint(address indexed _minter, uint256 indexed _tokenID, uint256[7] random_numbers);
 
     // DECLARING CHAINLINK VRF FUNCTION CONSTANTS
     bytes32 internal keyHash; //Public key against which randomness is generated
@@ -136,10 +136,10 @@ contract CovidCats is ERC721, VRFConsumerBase, Ownable, ReentrancyGuard {
 
         address initiator = requestToSender[requestId];
         
-        // Get 6 random numbers in the range from 1 to 100
-        uint256[6] memory randomValues;
+        // Get 7 random numbers in the range from 1 to 100
+        uint256[7] memory randomValues;
         
-        for (uint256 i = 0; i < 6; i++) {
+        for (uint256 i = 0; i < 7; i++) {
             randomValues[i] = uint256(keccak256(abi.encode(randomness, i)));
             randomValues[i] = (randomValues[i] % 100) + 1;
         }
@@ -155,7 +155,8 @@ contract CovidCats is ERC721, VRFConsumerBase, Ownable, ReentrancyGuard {
                 randomValues[2],
                 randomValues[3],
                 randomValues[4],
-                randomValues[5]
+                randomValues[5],
+                randomValues[6]
             ]
         );
 
